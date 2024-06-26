@@ -31,6 +31,9 @@ public class LectureEntity extends BaseEntity{
     @Column(nullable = false, name = "DATE")
     private LocalDateTime date;
 
+    @Transient
+    int currParticipants;
+
     @Builder
     public LectureEntity(String lectureCode, String title, String name, int maxParticipants, LocalDateTime date) {
         this.lectureCode = lectureCode;
@@ -38,5 +41,9 @@ public class LectureEntity extends BaseEntity{
         this.name = name;
         this.maxParticipants = maxParticipants;
         this.date = date;
+    }
+
+    public void updateCurrParticipants(int currParticipants) {
+        this.currParticipants = currParticipants;
     }
 }

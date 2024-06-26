@@ -29,7 +29,9 @@ public class LectureApplyResponse {
         return LectureApplyResponse.builder()
                 .lectureCode(entity.getLectureCode())
                 .title(entity.getTitle())
+                .date(entity.getDate())
                 .maxParticipants(entity.getMaxParticipants())
+                .currParticipants(entity.getCurrParticipants())
                 .build();
     }
 }
