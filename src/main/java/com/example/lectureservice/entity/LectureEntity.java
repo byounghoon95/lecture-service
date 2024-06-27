@@ -1,11 +1,15 @@
 package com.example.lectureservice.entity;
 
+import com.example.lectureservice.service.domain.response.LectureDetailsResponse;
+import com.example.lectureservice.service.domain.response.LectureResponse;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -22,28 +26,25 @@ public class LectureEntity extends BaseEntity{
     @Column(nullable = false, name = "TITLE")
     private String title;
 
-    @Column(nullable = false, name = "NAME")
-    private String name;
-
-    @Column(nullable = false, name = "MAX_PARTICIPANTS")
-    private int maxParticipants;
-
-    @Column(nullable = false, name = "DATE")
-    private LocalDateTime date;
-
-    @Transient
-    int currParticipants;
+    @OneToMany(mappedBy = "lecture", cascade = CascadeType.ALL)
+    private List<LectureDetailEntity> details = new ArrayList<>();
 
     @Builder
-    public LectureEntity(String lectureCode, String title, String name, int maxParticipants, LocalDateTime date) {
+    public LectureEntity(String lectureCode, String title, List<LectureDetailEntity> details) {
         this.lectureCode = lectureCode;
         this.title = title;
-        this.name = name;
-        this.maxParticipants = maxParticipants;
-        this.date = date;
+        this.details = details;
     }
 
-    public void updateCurrParticipants(int currParticipants) {
-        this.currParticipants = currParticipants;
+    public LectureResponse toDto() {
+        List<LectureDetailsResponse> detailDto = details.stream()
+                .map(LectureDetailEntity::toDto)
+                .collect(Collectors.toList());
+
+        return LectureResponse.builder()
+                .lectureCode(lectureCode)
+                .title(title)
+                .details(detailDto)
+                .build();
     }
 }

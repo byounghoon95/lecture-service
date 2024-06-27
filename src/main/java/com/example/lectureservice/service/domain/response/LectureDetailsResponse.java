@@ -5,14 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LectureResponse {
-    private String lectureCode;
-    private String title;
-    private List<LectureDetailsResponse> details;
+public class LectureDetailsResponse {
+    private String name;
+    private LocalDateTime date;
+    private int maxParticipants;
+    private int currParticipants;
 }

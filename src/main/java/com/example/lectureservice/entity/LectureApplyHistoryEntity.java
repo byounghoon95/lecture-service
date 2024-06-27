@@ -29,8 +29,9 @@ public class LectureApplyHistoryEntity extends BaseEntity implements Serializabl
     Status status;
 
     @Builder
-    public LectureApplyHistoryEntity(String userId, String lectureCode) {
+    public LectureApplyHistoryEntity(String userId, String lectureCode, Status status) {
         this.userId = userId;
         this.lectureCode = lectureCode;
+        this.status = status;
     }
 }

@@ -10,15 +10,16 @@ import lombok.NoArgsConstructor;
 public class LectureRequest {
     String lectureCode;
     String userId;
+    Long lectureDetailId;
 
     @Builder
-    public LectureRequest(String lectureCode, String userId) {
+    public LectureRequest(String lectureCode, String userId, Long lectureDetailId) {
         this.lectureCode = lectureCode;
         this.userId = userId;
+        this.lectureDetailId = lectureDetailId;
     }
 
     public Lecture toDomain() {
-        return new Lecture(userId,lectureCode);
+        return new Lecture(userId,lectureCode,lectureDetailId);
     }
-
 }

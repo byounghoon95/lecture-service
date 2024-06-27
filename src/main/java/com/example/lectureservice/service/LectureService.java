@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface LectureService {
     LectureApplyResponse applyToLecture(Lecture request);
-    Boolean isAppliedToLecture(String userId, String lectureCode);
-
     List<LectureResponse> selectLectureList();
+    LectureResponse selectLectureDetailList(String lectureCode);
+    List<LectureApplyResponse> isAppliedLecture(String userId);
 }

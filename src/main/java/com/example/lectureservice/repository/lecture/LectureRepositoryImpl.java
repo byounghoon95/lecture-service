@@ -15,11 +15,6 @@ public class LectureRepositoryImpl implements LectureRepository{
     private final LectureJpaRepository lectureRepository;
 
     @Override
-    public Optional<LectureEntity> findByLectureCode(String lectureCode) {
-        return lectureRepository.findByLectureCode(lectureCode);
-    }
-
-    @Override
     public LectureEntity save(LectureEntity entity) {
         return lectureRepository.save(entity);
     }
@@ -34,5 +29,13 @@ public class LectureRepositoryImpl implements LectureRepository{
         lectureRepository.deleteAllInBatch();
     }
 
+    @Override
+    public Optional<LectureEntity> findByLectureCodeAndId(String lectureCode, Long lectureDetailId) {
+        return lectureRepository.findByLectureCodeAndId(lectureCode, lectureDetailId);
+    }
 
+    @Override
+    public Optional<LectureEntity> findLectureDetail(String lectureCode) {
+        return lectureRepository.findLectureDetail(lectureCode);
+    }
 }

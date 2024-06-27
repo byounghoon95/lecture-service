@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LectureRepository {
-    Optional<LectureEntity> findByLectureCode(String lectureCode);
     LectureEntity save(LectureEntity entity);
     List<LectureEntity> findLecturesAfterDate(LocalDateTime now);
     void deleteAllInBatch();
+    Optional<LectureEntity> findByLectureCodeAndId(String lectureCode, Long lectureDetailId);
+
+    Optional<LectureEntity> findLectureDetail(String lectureCode);
 }

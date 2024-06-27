@@ -4,8 +4,6 @@ import com.example.lectureservice.entity.LectureApplyHistoryEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Repository
 public class LectureApplyHistoryRepositoryImpl implements LectureApplyHistoryRepository {
@@ -14,11 +12,6 @@ public class LectureApplyHistoryRepositoryImpl implements LectureApplyHistoryRep
     @Override
     public LectureApplyHistoryEntity save(LectureApplyHistoryEntity entity) {
         return lectureApplyHistoryRepository.save(entity);
-    }
-
-    @Override
-    public Optional<LectureApplyHistoryEntity> findByUserIdAndLectureCode(String userId, String lectureCode) {
-        return lectureApplyHistoryRepository.findByUserIdAndLectureCode(userId, lectureCode);
     }
 
     @Override
