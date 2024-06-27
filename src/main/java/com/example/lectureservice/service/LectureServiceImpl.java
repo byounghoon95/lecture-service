@@ -66,6 +66,8 @@ public class LectureServiceImpl implements LectureService{
                 lecture.updateStatus(Status.SUCCESS);
                 lectureApplyHistoryRepository.save(lecture.toLectureApplyEntity());
 
+                lectureRegRepository.save(new LectureRegEntity(lectureDetail, lecture.getUserId()));
+
                 break;
             } catch (OptimisticLockingFailureException e) {
                 try {
